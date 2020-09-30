@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: process.env.OWNER_EMAIL,
-        pass: process.env.PASSWORD
+        pass: process.env.PASS
     }
 });
 
@@ -23,6 +23,7 @@ var mailOptions = {
 };
 
 function postEmail(emailObj) {
+    console.log(emailObj)
     if (!emailObj.email) mailOptions.to = [process.env.OWNER_EMAIL]
     else mailOptions.to = [emailObj.email,process.env.OWNER_EMAIL]
     mailOptions.text = emailObj.bodyText

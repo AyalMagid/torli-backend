@@ -12,14 +12,14 @@ module.exports = {
 // const TOKEN = "Bearer mFzYTSGauAA4QGdG6rI9MtfvvfEZHo"
 
 // BAR SECOND
-// const ACCOUNT_ID = '416830154'
-// const CALENDAR_ID = "calendar_YmFydmFyZm1hbjNAZ21haWwuY29t"
-// const TOKEN = "Bearer Zz1lcWHR2WjThDJhiLrJ4fgJ8ZzoxU"
+const ACCOUNT_ID = '416830154'
+const CALENDAR_ID = "calendar_YmFydmFyZm1hbjNAZ21haWwuY29t"
+const TOKEN = "Bearer Zz1lcWHR2WjThDJhiLrJ4fgJ8ZzoxU"
 
 // BAR
-const ACCOUNT_ID = '416457905'
-const CALENDAR_ID = 'calendar_YmFydmFydGVzdEBnbWFpbC5jb20'
-const TOKEN = "Bearer gVTIuU0seE73kvJqfCyLS8uFYV3cwm"
+// const ACCOUNT_ID = '416457905'
+// const CALENDAR_ID = 'calendar_YmFydmFydGVzdEBnbWFpbC5jb20'
+// const TOKEN = "Bearer gVTIuU0seE73kvJqfCyLS8uFYV3cwm"
 
 async function getCalendar() {
     try {
@@ -64,7 +64,7 @@ async function addToCalendar (eventDetails) {
     }
 }
 
-async function removeFromCalendar (eventId) {
+async function removeFromCalendar ({eventId}) {
     try {
     const res = await axios ({
         method:'delete',

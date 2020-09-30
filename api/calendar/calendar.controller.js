@@ -21,7 +21,6 @@ async function removeFromCalendar (req, res) {
     res.send(calendar)
 }
 
-
 module.exports = {
     getCalendar,
     getAvailbleDailySlots,
