@@ -78,6 +78,7 @@ async function removeFromCalendar ({eventId}) {
     }
 }
 
+// if no time slots availble returns only the date 
 async function getAvailbleDailySlots (treatmentDetails) {
     const {startTime, endtTime, duration} = treatmentDetails
     console.log('startTime, endtTime, duration', startTime, endtTime, duration)
@@ -96,8 +97,9 @@ async function getAvailbleDailySlots (treatmentDetails) {
                 ] 
         })
     })
-    console.log('res',res.data)
-    return res.data.time_windows
+    if (res.data.time_windows.length) return res.data.time_windows
+    // return just a string with the date which is needed for later
+    else return startTime
     } catch (err) {
         console.log(`ERROR: cannot get daily slots from calendar`)
         throw err;
