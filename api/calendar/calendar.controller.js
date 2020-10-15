@@ -6,6 +6,12 @@ async function getCalendar(req, res) {
     res.send(calendar)
 }
 
+async function getEventsFromCalendar(req, res) {
+       console.log('puki',req.params);
+    const events =  await calendarService.getEventsFromCalendar(req.params)
+    res.send(events)
+}
+
 async function getAvailbleDailySlots (req, res) {
     const dailySlots =  await calendarService.getAvailbleDailySlots(req.body) 
     res.send(dailySlots)
@@ -25,5 +31,6 @@ module.exports = {
     getCalendar,
     getAvailbleDailySlots,
     addToCalendar,
-    removeFromCalendar
+    removeFromCalendar,
+    getEventsFromCalendar
 }

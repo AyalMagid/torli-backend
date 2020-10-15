@@ -4,7 +4,8 @@ module.exports = {
     getCalendar,
     getAvailbleDailySlots,
     addToCalendar,
-    removeFromCalendar
+    removeFromCalendar,
+    getEventsFromCalendar
 }
 // // AYAL'S CALENDAR
 // const ACCOUNT_ID = '413361439'
@@ -23,40 +24,54 @@ const TOKEN = "Bearer Zz1lcWHR2WjThDJhiLrJ4fgJ8ZzoxU"
 
 async function getCalendar() {
     try {
-        const res = await axios ({
+        const res = await axios({
             method: 'get',
             url: 'https://api.kloudless.com/v1/accounts?enabled=True',
-            headers: {Authorization: TOKEN}
+            headers: { Authorization: TOKEN }
         })
-        return res.data.objects[0] 
+        return res.data.objects[0]
     } catch (err) {
-            console.log(`ERROR: cannot find calendar`)
+        console.log(`ERROR: cannot find calendar`)
         throw err;
     }
 }
 
-async function addToCalendar (eventDetails) {
-    const {eventName, creatorName, creatorEmail, startTime, endTime} = eventDetails
+async function getEventsFromCalendar(timeRange) {
+    try {
+        const res = await axios({
+            method: 'get',
+            url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/${CALENDAR_ID}/events?start=${timeRange.start}&end=${timeRange.end}`,
+            headers: { Authorization: TOKEN }
+        })
+        return res.data.objects
+    } catch (err) {
+        console.log(`ERROR: cannot get calendar events`)
+        throw err;
+    }
+}
+
+async function addToCalendar(eventDetails) {
+    const { eventName, creatorName, creatorEmail, startTime, endTime } = eventDetails
     console.log(eventName, creatorName, creatorEmail, startTime, endTime)
     // const collection = await dbService.getCollection('event')
     try {
-        const event = await axios ({
+        const event = await axios({
             method: 'post',
             url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/primary/events`,
-            headers: {Authorization: TOKEN, 'Content-Type': 'application/json'}
+            headers: { Authorization: TOKEN, 'Content-Type': 'application/json' }
             ,
-            data: JSON.stringify( 
-            {
-                "name": `${creatorName} - ${eventName}`,
-                "description" : eventName,
-                "start": startTime,
-                "end": endTime,
-                // "creator": {
-                //     "name": creatorName,
-                //     "email": creatorEmail
-                // }
-            })
-        }) 
+            data: JSON.stringify(
+                {
+                    "name": `${creatorName} - ${eventName}`,
+                    "description": eventName,
+                    "start": startTime,
+                    "end": endTime,
+                    // "creator": {
+                    //     "name": creatorName,
+                    //     "email": creatorEmail
+                    // }
+                })
+        })
         return event.data;
     } catch (err) {
         console.log(`ERROR: cannot add event to calendar`)
@@ -64,14 +79,14 @@ async function addToCalendar (eventDetails) {
     }
 }
 
-async function removeFromCalendar ({eventId}) {
+async function removeFromCalendar({ eventId }) {
     try {
-    const res = await axios ({
-        method:'delete',
-        url:`https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/${CALENDAR_ID}/events/${eventId}`,
-        headers: {Authorization: TOKEN}
-    })
-    console.log(res.data)
+        const res = await axios({
+            method: 'delete',
+            url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/${CALENDAR_ID}/events/${eventId}`,
+            headers: { Authorization: TOKEN }
+        })
+        console.log(res.data)
     } catch (err) {
         console.log(`ERROR: cannot remove event from calendar`)
         throw err;
@@ -79,27 +94,27 @@ async function removeFromCalendar ({eventId}) {
 }
 
 // if no time slots availble returns only the date 
-async function getAvailbleDailySlots (treatmentDetails) {
-    const {startTime, endtTime, duration} = treatmentDetails
+async function getAvailbleDailySlots(treatmentDetails) {
+    const { startTime, endtTime, duration } = treatmentDetails
     console.log('startTime, endtTime, duration', startTime, endtTime, duration)
     try {
         const res = await axios({
-        method:'post',
-        url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/availability`,
-        headers: {Authorization: TOKEN, 'Content-Type': 'application/json'},
-        data: JSON.stringify( {
-            "meeting_duration": `PT${duration}`,
+            method: 'post',
+            url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/availability`,
+            headers: { Authorization: TOKEN, 'Content-Type': 'application/json' },
+            data: JSON.stringify({
+                "meeting_duration": `PT${duration}`,
                 "time_windows": [
                     {
                         "start": startTime,
                         "end": endtTime
                     }
-                ] 
+                ]
+            })
         })
-    })
-    if (res.data.time_windows.length) return res.data.time_windows
-    // return just a string with the date which is needed for later
-    else return startTime
+        if (res.data.time_windows.length) return res.data.time_windows
+        // return just a string with the date which is needed for later
+        else return startTime
     } catch (err) {
         console.log(`ERROR: cannot get daily slots from calendar`)
         throw err;
