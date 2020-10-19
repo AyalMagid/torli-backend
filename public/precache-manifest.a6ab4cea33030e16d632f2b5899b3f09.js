@@ -1,27 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "28a109208991372dd871bfb67052c2e8",
+    "revision": "4cc576c974e825d1ec5d0179a9d1a506",
     "url": "/index.html"
   },
   {
-    "revision": "678386f4e66356028e96",
-    "url": "/static/css/main.f5213d03.chunk.css"
+    "revision": "8bb675a9fe139df6a468",
+    "url": "/static/css/main.af1dfac4.chunk.css"
   },
   {
-    "revision": "66f7623b385230cf5fa0",
-    "url": "/static/js/2.02535af5.chunk.js"
+    "revision": "c8a559562c5a10e361ab",
+    "url": "/static/js/2.d81f0b4d.chunk.js"
   },
   {
     "revision": "1937a0fc6634269e5f47f8181e27fdc7",
-    "url": "/static/js/2.02535af5.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.d81f0b4d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "678386f4e66356028e96",
-    "url": "/static/js/main.4c1f3bc8.chunk.js"
+    "revision": "8bb675a9fe139df6a468",
+    "url": "/static/js/main.ff80fb11.chunk.js"
   },
   {
     "revision": "2220842a8d8c60b907e5",
     "url": "/static/js/runtime-main.8457443a.js"
+  },
+  {
+    "revision": "c5d54929c418e69868b42a4d75063958",
+    "url": "/static/media/Alef-Regular.c5d54929.ttf"
+  },
+  {
+    "revision": "d3bebba97d549436fd6137d05d55ae33",
+    "url": "/static/media/DancingScript-VariableFont_wght.d3bebba9.ttf"
   },
   {
     "revision": "3f5fef64b9bb3ef6ded20c917f3082f7",
