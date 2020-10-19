@@ -1,105 +1,58 @@
+const axios = require('axios');
+const dbService = require('../../services/db.service')
+const ObjectId = require('mongodb').ObjectId
 
-// const dbService = require('../../services/db.service')
-// const reviewService = require('../review/review.service')
-// const ObjectId = require('mongodb').ObjectId
-
-// module.exports = {
-//     query,
-//     getById,
-//     getByEmail,
-//     remove,
-//     update,
-//     add
-// }
-
-// async function query(filterBy = {}) {
-//     console.log('queryyy');
-//     const criteria = _buildCriteria(filterBy)
-//     const collection = await dbService.getCollection('user')
-//     try {
-//         const users = await collection.find(criteria).toArray();
-//         // users.forEach(user => delete user.password);
-
-//         return users
-//     } catch (err) {
-//         console.log('ERROR: cannot find users')
-//         throw err;
-//     }
-// }
-
-// async function getById(userId) {
-//     const collection = await dbService.getCollection('user')
-//     try {
-//         const user = await collection.findOne({"_id":ObjectId(userId)})
-//         delete user.password
-
-//         user.givenReviews = await reviewService.query({byUserId: ObjectId(user._id) })
-//         user.givenReviews = user.givenReviews.map(review => {
-//             delete review.byUser
-//             return review
-//         })
+module.exports = {
+    addUser,
+    getUser,
+    getUsers,
+    removeUser
+}
 
 
-//         return user
-//     } catch (err) {
-//         console.log(`ERROR: while finding user ${userId}`)
-//         throw err;
-//     }
-// }
-// async function getByEmail(email) {
-//     const collection = await dbService.getCollection('user')
-//     try {
-//         const user = await collection.findOne({email})
-//         return user
-//     } catch (err) {
-//         console.log(`ERROR: while finding user ${email}`)
-//         throw err;
-//     }
-// }
+async function addUser (user){
+    const collection = await dbService.getCollection('user')
+    try {
+        await collection.insertOne(user);
+        return user;
+    } catch (err) {
+        console.log(`ERROR: cannot insert user`)
+        throw err;
+    }
+}
 
-// async function remove(userId) {
-//     const collection = await dbService.getCollection('user')
-//     try {
-//         await collection.deleteOne({"_id":ObjectId(userId)})
-//     } catch (err) {
-//         console.log(`ERROR: cannot remove user ${userId}`)
-//         throw err;
-//     }
-// }
+async function removeUser(_id) {
+    console.log('be id',_id)
+    const collection = await dbService.getCollection('user')
+    try {
+        await collection.deleteOne({"_id":ObjectId(_id)})
+        console.log('delete user from DB',_id);
+    } catch (err) {
+        console.log(`ERROR: cannot remove user ${_id}`)
+        throw err;
+    }
+}
 
-// async function update(user) {
-//     const collection = await dbService.getCollection('user')
-//     user._id = ObjectId(user._id);
+async function getUser(phone) {
+    console.log('this is the phone', phone)
+    const collection = await dbService.getCollection('user')
+    try {
+        const user = await collection.findOne({"phone":phone})
+        console.log(user)
+        return user
+    } catch (err) {
+        console.log(`ERROR: cant find user by the phone - ${_id}`)
+        throw err;
+    }
+}
 
-//     try {
-//         await collection.replaceOne({"_id":user._id}, {$set : user})
-//         return user
-//     } catch (err) {
-//         console.log(`ERROR: cannot update user ${user._id}`)
-//         throw err;
-//     }
-// }
-
-// async function add(user) {
-//     const collection = await dbService.getCollection('user')
-//     try {
-//         await collection.insertOne(user);
-//         return user;
-//     } catch (err) {
-//         console.log(`ERROR: cannot insert user`)
-//         throw err;
-//     }
-// }
-
-// function _buildCriteria(filterBy) {
-//     const criteria = {};
-//     if (filterBy.txt) {
-//         criteria.username = filterBy.txt
-//     }
-//     if (filterBy.minBalance) {
-//         criteria.balance = {$gte : +filterBy.minBalance}
-//     }
-//     return criteria;
-// }
-
-
+ async function getUsers() {
+    const collection = await dbService.getCollection('user')
+    try {
+        const users = await collection.find({}).toArray();
+        return users
+    } catch (err) {
+        console.log(`ERROR: cant get users collection`)
+        throw err;
+    }
+}
