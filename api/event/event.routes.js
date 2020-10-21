@@ -3,7 +3,8 @@ const express = require('express')
 // const {getCalendar, deleteCalendar, updateCalendar, addCalendar} = require('./calendar.controller')
 const { addEvent, getEvent, removeEvent} = require('./event.controller')
 const router = express.Router()
-router.get('/:phone', getEvent);
+//get phone or calendar event id and return mongo event
+router.get('/:phoneOrId', getEvent);
 router.post('/', addEvent);
 router.delete('/:id', removeEvent);
 
