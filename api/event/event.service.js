@@ -5,7 +5,7 @@ const ObjectId = require('mongodb').ObjectId
 module.exports = {
     // getCalendar,
     addEvent,
-    getEventByPhone,
+    getEventByPhoneOrId,
     removeEvent
 }
 
@@ -20,7 +20,7 @@ module.exports = {
 //     }
 // }
 
-async function addEvent (event){
+async function addEvent(event) {
     const collection = await dbService.getCollection('event')
     try {
         await collection.insertOne(event);
@@ -32,22 +32,27 @@ async function addEvent (event){
 }
 
 async function removeEvent(_id) {
-    console.log('be id',_id)
+    console.log('be id', _id)
     const collection = await dbService.getCollection('event')
     try {
-        await collection.deleteOne({"_id":ObjectId(_id)})
-        console.log('delete event from DB',_id);
+        await collection.deleteOne({ "_id": ObjectId(_id) })
+        console.log('delete event from DB', _id);
     } catch (err) {
         console.log(`ERROR: cannot remove event ${_id}`)
         throw err;
     }
 }
 
-async function getEventByPhone(phone) {
-    console.log('this is the phone', phone)
+async function getEventByPhoneOrId(phoneOrId) {
+    console.log('this is the phoneOrId', phoneOrId)
     const collection = await dbService.getCollection('event')
+    let event
     try {
-        const event = await collection.find({"phone":phone}).toArray()
+        if (phoneOrId.length > 11) {
+            event = await collection.findOne({ "eventId": phoneOrId })
+        } else {
+            event = await collection.find({ "phone": phoneOrId }).toArray()
+        }
         console.log(event)
         return event
     } catch (err) {
