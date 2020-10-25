@@ -36,6 +36,7 @@ const calendarRoutes = require('./api/calendar/calendar.routes')
 const eventRoutes = require('./api/event/event.routes')
 const emailRoutes = require('./api/email/email.routes')
 const userRoutes = require('./api/user/user.routes')
+const advertiseRoutes = require('./api/advertise/advertise.routes')
 
 // routes
 app.use('/api/treatment', treatmentRoutes)
@@ -43,6 +44,7 @@ app.use('/api/calendar', calendarRoutes)
 app.use('/api/event', eventRoutes)
 app.use('/api/email', emailRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/advertise', advertiseRoutes)
 
 const logger = require('./services/logger.service')
 const port = process.env.PORT || 3030;
