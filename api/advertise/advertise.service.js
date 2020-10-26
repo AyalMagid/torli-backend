@@ -3,6 +3,7 @@ const dbService = require('../../services/db.service')
 module.exports = {
     createAd,
     updateAd,
+    toggleAdMode,
     getAd
 }
 
@@ -22,20 +23,34 @@ async function createAd() {
 }
 
 
-async function updateAd({ advertiseContent }) {
+async function updateAd(contentInObj) {
     const collection = await dbService.getCollection('advertise')
     try {
         collection.updateOne(
             { "name": "popup" },
-            { $set: { "content": advertiseContent } }
+            { $set: { "content": contentInObj.advertiseContent } }
         )
-        return ad;
+        return contentInObj;
     } catch (err) {
         console.log(`ERROR: cannot update ad content`)
         throw err;
     }
 }
 
+async function toggleAdMode(modeInObj) {
+    console.log('dsdsdsdsdsd',modeInObj)
+    const collection = await dbService.getCollection('advertise')
+    try {
+        collection.updateOne(
+            { "name": "popup" },
+            { $set: { "isAdModeOn": modeInObj.isAdModeOn} }
+        )
+        return modeInObj;
+    } catch (err) {
+        console.log(`ERROR: cannot update ad content`)
+        throw err;
+    }
+}
 
 async function getAd() {
     const collection = await dbService.getCollection('advertise')

@@ -7,10 +7,14 @@ async function createAd(req, res) {
     res.send(advertise)
 }
 
-
-
 async function updateAd(req, res) {
     const advertise = await advertiseService.updateAd(req.body)
+    res.send(advertise)
+}
+
+async function toggleAdMode(req, res) {
+    console.log(req.body)
+    const advertise = await advertiseService.toggleAdMode(req.body)
     res.send(advertise)
 }
 
@@ -23,5 +27,6 @@ async function getAd(req, res) {
 module.exports = {
     createAd,
     updateAd,
+    toggleAdMode,
     getAd
 }
