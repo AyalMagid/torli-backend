@@ -23,6 +23,7 @@ async function addUser (user){
 }
 
 async function updateUser (user){
+    console.log('baruuuuu', user)
     const collection = await dbService.getCollection('user')
     try {
         collection.updateOne(
