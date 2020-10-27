@@ -6,7 +6,8 @@ module.exports = {
     addUser,
     getUser,
     getUsers,
-    removeUser
+    removeUser,
+    updateUser
 }
 
 
@@ -14,6 +15,25 @@ async function addUser (user){
     const collection = await dbService.getCollection('user')
     try {
         await collection.insertOne(user);
+        return user;
+    } catch (err) {
+        console.log(`ERROR: cannot insert user`)
+        throw err;
+    }
+}
+
+async function updateUser (user){
+    const collection = await dbService.getCollection('user')
+    try {
+        collection.updateOne(
+            { "phone": user.oldPhone },
+            { $set: {
+                 "name": user.name,
+                 "phone": user.phone,
+                 "email": user.email
+                } 
+            }
+        )
         return user;
     } catch (err) {
         console.log(`ERROR: cannot insert user`)
