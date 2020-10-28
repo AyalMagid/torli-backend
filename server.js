@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
     };
     app.use(cors(corsOptions));
 }
-
+  
 
 const treatmentRoutes = require('./api/treatment/treatment.routes')
 const calendarRoutes = require('./api/calendar/calendar.routes')

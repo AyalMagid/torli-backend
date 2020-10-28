@@ -5,6 +5,7 @@ async function getUser(req, res) {
     const phone = req.params.phone
     console.log('phone in controller',phone);
     const user =  await userService.getUser(phone) 
+    res.header('Access-Control-Allow-Origin', '*');
     res.send(user)
 }
 async function getUsers(req, res) {
