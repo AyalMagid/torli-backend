@@ -51,6 +51,7 @@ async function getEventsFromCalendar(timeRange) {
 }
 
 async function addToCalendar(eventDetails) {
+    console.log('eventDetailssss', eventDetails)
     const { eventName, creatorName, creatorEmail, startTime, endTime } = eventDetails
     console.log(eventName, creatorName, creatorEmail, startTime, endTime)
     // const collection = await dbService.getCollection('event')
@@ -95,6 +96,7 @@ async function removeFromCalendar({ eventId }) {
 
 // if no time slots availble returns only the date 
 async function getAvailbleDailySlots(treatmentDetails) {
+    console.log('bababababba', treatmentDetails)
     const { startTime, endtTime, duration } = treatmentDetails
     console.log('startTime, endtTime, duration', startTime, endtTime, duration)
     try {
@@ -107,7 +109,7 @@ async function getAvailbleDailySlots(treatmentDetails) {
                 "time_windows": [
                     {
                         "start": startTime,
-                        "end": endtTime
+                        "end": endtTime,
                     }
                 ]
             })
