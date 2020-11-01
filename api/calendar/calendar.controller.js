@@ -7,7 +7,6 @@ async function getCalendar(req, res) {
 }
 
 async function getEventsFromCalendar(req, res) {
-       console.log('puki',req.params);
     const events =  await calendarService.getEventsFromCalendar(req.params)
     res.send(events)
 }

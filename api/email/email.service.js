@@ -23,7 +23,6 @@ var mailOptions = {
 };
 
 function postEmail(emailObj) {
-    console.log(emailObj)
     if (!emailObj.email) mailOptions.to = [process.env.OWNER_EMAIL]
     else mailOptions.to = [emailObj.email,process.env.OWNER_EMAIL]
     mailOptions.text = emailObj.bodyText

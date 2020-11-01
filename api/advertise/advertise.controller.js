@@ -13,13 +13,11 @@ async function updateAd(req, res) {
 }
 
 async function toggleAdMode(req, res) {
-    console.log(req.body)
     const advertise = await advertiseService.toggleAdMode(req.body)
     res.send(advertise)
 }
 
 async function getAd(req, res) {
-    console.log('rono')
     const advertise = await advertiseService.getAd()
     res.send(advertise)
 }

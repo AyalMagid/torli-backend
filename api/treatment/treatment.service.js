@@ -50,7 +50,6 @@ async function remove(treatmentId) {
     const collection = await dbService.getCollection('treatments')
     try {
         await collection.deleteOne({"_id":ObjectId(treatmentId)})
-        console.log('delete at service',treatmentId);
     } catch (err) {
         console.log(`ERROR: cannot remove treatment ${treatmentId}`)
         throw err;

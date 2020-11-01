@@ -3,13 +3,11 @@ const logger = require('../../services/logger.service')
 
 async function getUser(req, res) {
     const phone = req.params.phone
-    console.log('phone in controller',phone);
     const user =  await userService.getUser(phone) 
     res.send(user)
 }
 async function getUsers(req, res) {
     const users =  await userService.getUsers() 
-    console.log('sheneda',users);
     res.send(users)
 }
 
