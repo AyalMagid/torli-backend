@@ -38,7 +38,6 @@ async function updateAd(contentInObj) {
 }
 
 async function toggleAdMode(modeInObj) {
-    console.log('dsdsdsdsdsd',modeInObj)
     const collection = await dbService.getCollection('advertise')
     try {
         collection.updateOne(
@@ -55,11 +54,9 @@ async function toggleAdMode(modeInObj) {
 async function getAd() {
     const collection = await dbService.getCollection('advertise')
     var advertise
-    console.log('roni', collection);
     try {
         //assuming there is only one ad at the collection
         advertise = await collection.find({}).toArray();
-        console.log('roni2', advertise);
         return advertise
     } catch (err) {
         console.log(`ERROR: cant find advertise`)

@@ -51,10 +51,7 @@ async function getEventsFromCalendar(timeRange) {
 }
 
 async function addToCalendar(eventDetails) {
-    console.log('eventDetailssss', eventDetails)
     const { eventName, creatorName, creatorEmail, startTime, endTime } = eventDetails
-    console.log(eventName, creatorName, creatorEmail, startTime, endTime)
-    // const collection = await dbService.getCollection('event')
     try {
         const event = await axios({
             method: 'post',
@@ -87,7 +84,6 @@ async function removeFromCalendar({ eventId }) {
             url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/${CALENDAR_ID}/events/${eventId}`,
             headers: { Authorization: TOKEN }
         })
-        console.log(res.data)
     } catch (err) {
         console.log(`ERROR: cannot remove event from calendar`)
         throw err;
@@ -96,9 +92,7 @@ async function removeFromCalendar({ eventId }) {
 
 // if no time slots availble returns only the date 
 async function getAvailbleDailySlots(treatmentDetails) {
-    console.log('bababababba', treatmentDetails)
     const { startTime, endtTime, duration } = treatmentDetails
-    console.log('startTime, endtTime, duration', startTime, endtTime, duration)
     try {
         const res = await axios({
             method: 'post',

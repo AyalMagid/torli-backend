@@ -23,7 +23,6 @@ async function addUser (user){
 }
 
 async function updateUser (user){
-    console.log('baruuuuu', user)
     const collection = await dbService.getCollection('user')
     try {
         collection.updateOne(
@@ -43,11 +42,9 @@ async function updateUser (user){
 }
 
 async function removeUser(_id) {
-    console.log('be id',_id)
     const collection = await dbService.getCollection('user')
     try {
         await collection.deleteOne({"_id":ObjectId(_id)})
-        console.log('delete user from DB',_id);
     } catch (err) {
         console.log(`ERROR: cannot remove user ${_id}`)
         throw err;
@@ -55,11 +52,9 @@ async function removeUser(_id) {
 }
 
 async function getUser(phone) {
-    console.log('this is the phone', phone)
     const collection = await dbService.getCollection('user')
     try {
         const user = await collection.findOne({"phone":phone})
-        console.log(user)
         return user
     } catch (err) {
         console.log(`ERROR: cant find user by the phone - ${_id}`)
