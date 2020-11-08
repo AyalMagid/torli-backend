@@ -22,8 +22,10 @@ async function addToCalendar (req, res) {
 }
 
 async function removeFromCalendar (req, res) {
-    const calendar =  await calendarService.removeFromCalendar(req.body) 
-    res.send(calendar)
+   //its may return err 
+    const isRemoved =  await calendarService.removeFromCalendar(req.body) 
+    console.log('this ca',isRemoved);
+    res.send(isRemoved)
 }
 
 module.exports = {
