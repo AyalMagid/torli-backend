@@ -13,6 +13,7 @@ async function getEventsFromCalendar(req, res) {
 
 async function getAvailbleDailySlots (req, res) {
     const dailySlots =  await calendarService.getAvailbleDailySlots(req.body) 
+    console.log('dailyslotssss',dailySlots)
     res.send(dailySlots)
 }
 
