@@ -93,7 +93,7 @@ async function addRecurrenceToCalendar(eventDetails) {
                     "description": eventName,
                     "start": startTime,
                     "end": endTime,
-                    "recurrence": [{"rrule": "RRULE:FREQ=DAILY;COUNT=10"}]
+                    "recurrence": [{"rrule": "RRULE:FREQ=DAILY;COUNT=5"}]
                 })
         })
         return event.data;
