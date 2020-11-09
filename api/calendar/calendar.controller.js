@@ -21,6 +21,11 @@ async function addToCalendar (req, res) {
     res.send(calendar)
 }
 
+async function addRecurrenceToCalendar (req, res) {
+    const calendar =  await calendarService.addRecurrenceToCalendar(req.body) 
+    res.send(calendar)
+}
+
 async function removeFromCalendar (req, res) {
     const calendar =  await calendarService.removeFromCalendar(req.body) 
     res.send(calendar)
@@ -30,6 +35,7 @@ module.exports = {
     getCalendar,
     getAvailbleDailySlots,
     addToCalendar,
+    addRecurrenceToCalendar,
     removeFromCalendar,
     getEventsFromCalendar
 }

@@ -4,6 +4,7 @@ module.exports = {
     getCalendar,
     getAvailbleDailySlots,
     addToCalendar,
+    addRecurrenceToCalendar,
     removeFromCalendar,
     getEventsFromCalendar
 }
@@ -76,6 +77,32 @@ async function addToCalendar(eventDetails) {
         throw err;
     }
 }
+
+async function addRecurrenceToCalendar(eventDetails) {
+    const { eventName, creatorName, startTime, endTime, recurrence} = eventDetails
+    try {
+        console.log('recurrencerecurrence', recurrence)
+        const event = await axios({
+            method: 'post',
+            url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/primary/events`,
+            headers: { Authorization: TOKEN, 'Content-Type': 'application/json' }
+            ,
+            data: JSON.stringify(
+                {
+                    "name": `${creatorName} - ${eventName}`,
+                    "description": eventName,
+                    "start": startTime,
+                    "end": endTime,
+                    "recurrence": [{"rrule": "RRULE:FREQ=DAILY;COUNT=10"}]
+                })
+        })
+        return event.data;
+    } catch (err) {
+        console.log(`ERROR: cannot add event to calendar`)
+        throw err;
+    }
+}
+
 
 async function removeFromCalendar({ eventId }) {
     try {
