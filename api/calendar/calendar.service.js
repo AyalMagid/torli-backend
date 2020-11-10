@@ -78,7 +78,9 @@ async function addToCalendar(eventDetails) {
     }
 }
 
+// add UNTIL option - UNTIL=19971224T000000Z  LINK https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html
 async function addRecurrenceToCalendar(eventDetails) {
+    console.log('eveveevent', eventDetails)
     const { eventName, creatorName, startTime, endTime, recurrence} = eventDetails
     try {
         console.log('recurrencerecurrence', recurrence)
@@ -93,7 +95,7 @@ async function addRecurrenceToCalendar(eventDetails) {
                     "description": eventName,
                     "start": startTime,
                     "end": endTime,
-                    "recurrence": [{"rrule": "RRULE:FREQ=DAILY;COUNT=5"}]
+                    "recurrence": [{"rrule": `RRULE:FREQ=${recurrence.freq};COUNT=${recurrence.count}`}]
                 })
         })
         return event.data;
