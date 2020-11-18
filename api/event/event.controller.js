@@ -7,6 +7,11 @@ async function getEvent(req, res) {
     res.send(event)
 }
 
+async function getRecurrenceEventBySubStrId(req, res) {
+    const event =  await eventService.getRecurrenceEventBySubStrId(req.params.subStrId) 
+    res.send(event)
+}
+
 async function addEvent(req, res) {
     const event =  await eventService.addEvent(req.body) 
     res.send(event)
@@ -21,4 +26,5 @@ module.exports = {
     addEvent,
     getEvent,
     removeEvent,
+    getRecurrenceEventBySubStrId
 }

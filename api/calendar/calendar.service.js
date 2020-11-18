@@ -107,12 +107,14 @@ async function addRecurrenceToCalendar(eventDetails) {
 
 
 async function removeFromCalendar({ eventId }) {
+    // eventId = "event_cjEwNW8wa29sc2djaGtyaTUzYWNocDVkOWtfMjAyMDEyMTRUMDgzMDAwWg"
     try {
         const res = await axios({
             method: 'delete',
             url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/${CALENDAR_ID}/events/${eventId}`,
             headers: { Authorization: TOKEN }
         })
+        console.log('eventID',eventId,'removed', res)
     return true
     } catch (err) {
         console.log('not good',eventId,`ERROR: cannot remove event from calendar`)

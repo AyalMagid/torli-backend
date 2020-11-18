@@ -5,7 +5,8 @@ const ObjectId = require('mongodb').ObjectId
 module.exports = {
     addEvent,
     getEventByPhoneOrId,
-    removeEvent
+    removeEvent,
+    getRecurrenceEventBySubStrId
 }
 
 async function addEvent(event) {
@@ -41,6 +42,20 @@ async function getEventByPhoneOrId(phoneOrId) {
         return event
     } catch (err) {
         console.log(`ERROR: cant find event by the phone - ${_id}`)
+        throw err;
+    }
+}
+
+async function getRecurrenceEventBySubStrId(subStrId) {
+    const collection = await dbService.getCollection('event')
+    let event
+    try {
+        // db.test.find({A: {$regex: 'Star Wars'}})
+            event = await collection.findOne({eventId: {$regex: subStrId}})
+            console.log('fdsfdsfsfs', event)
+        return event
+    } catch (err) {
+        console.log(`ERROR: cant find event by the subStr - ${subStrId}`)
         throw err;
     }
 }
