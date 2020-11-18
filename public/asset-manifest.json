@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fcb6f41e.chunk.css",
+    "main.js": "/static/js/main.630fc042.chunk.js",
+    "main.js.map": "/static/js/main.630fc042.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8457443a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8457443a.js.map",
+    "static/js/2.244ff0fc.chunk.js": "/static/js/2.244ff0fc.chunk.js",
+    "static/js/2.244ff0fc.chunk.js.map": "/static/js/2.244ff0fc.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.1ccb558eee54d8598f44f7b4f223c8c7.js": "/precache-manifest.1ccb558eee54d8598f44f7b4f223c8c7.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.fcb6f41e.chunk.css.map": "/static/css/main.fcb6f41e.chunk.css.map",
+    "static/js/2.244ff0fc.chunk.js.LICENSE.txt": "/static/js/2.244ff0fc.chunk.js.LICENSE.txt",
+    "static/media/CalendarAdmin.scss": "/static/media/DancingScript-VariableFont_wght.d3bebba9.ttf",
+    "static/media/style.scss": "/static/media/handlight.34ad6669.png",
+    "static/media/HomePage.scss": "/static/media/logo3.13d5f073.png",
+    "static/media/oo.png": "/static/media/oo.bb4ea92a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8457443a.js",
+    "static/js/2.244ff0fc.chunk.js",
+    "static/css/main.fcb6f41e.chunk.css",
+    "static/js/main.630fc042.chunk.js"
+  ]
+}
