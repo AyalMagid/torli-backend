@@ -9,6 +9,7 @@ const fs = require('fs');
 const app = express()
 const http = require('http').createServer(app);
 
+// var twilio = require('twilio');
 
 // Express App Config
 app.use(cookieParser())
@@ -36,6 +37,7 @@ const eventRoutes = require('./api/event/event.routes')
 const emailRoutes = require('./api/email/email.routes')
 const userRoutes = require('./api/user/user.routes')
 const advertiseRoutes = require('./api/advertise/advertise.routes')
+const twilloRoutes = require('./api/twillo/twillo.routes')
 
 // routes
 app.use('/api/treatment', treatmentRoutes)
@@ -44,6 +46,8 @@ app.use('/api/event', eventRoutes)
 app.use('/api/email', emailRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/advertise', advertiseRoutes)
+app.use('/api/twillo', twilloRoutes)
+
 
 const logger = require('./services/logger.service')
 const port = process.env.PORT || 3030;

@@ -114,6 +114,7 @@ async function removeFromCalendar({ eventId }) {
             url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/${CALENDAR_ID}/events/${eventId}`,
             headers: { Authorization: TOKEN }
         })
+
         console.log('eventID',eventId,'removed', res)
     return true
     } catch (err) {
