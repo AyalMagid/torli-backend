@@ -11,6 +11,12 @@ const http = require('http').createServer(app);
 
 // var twilio = require('twilio');
 
+// var name = GET["name"]
+// if (name==="adi"){
+//     mongo = adi 
+//     return ma shezarih
+// }
+
 // Express App Config
 app.use(cookieParser())
 app.use(bodyParser.json());
@@ -37,7 +43,7 @@ const eventRoutes = require('./api/event/event.routes')
 const emailRoutes = require('./api/email/email.routes')
 const userRoutes = require('./api/user/user.routes')
 const advertiseRoutes = require('./api/advertise/advertise.routes')
-const twilloRoutes = require('./api/twillo/twillo.routes')
+// const twilloRoutes = require('./api/twillo/twillo.routes')
 
 // routes
 app.use('/api/treatment', treatmentRoutes)
@@ -46,7 +52,7 @@ app.use('/api/event', eventRoutes)
 app.use('/api/email', emailRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/advertise', advertiseRoutes)
-app.use('/api/twillo', twilloRoutes)
+// app.use('/api/twillo', twilloRoutes)
 
 
 const logger = require('./services/logger.service')
