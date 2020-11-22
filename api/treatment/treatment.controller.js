@@ -12,6 +12,14 @@ async function getTreatments(req, res) {
     res.send(treatments)
 }
 
+// routim
+// async function getTreatments(req, res) {
+//     const workPlace = req.params.workPlace
+//     const treatments = await treatmentService.query({workPlace})
+//     logger.debug(treatments);
+//     res.send(treatments)
+// }
+
 async function deleteTreatment(req, res) {
     await treatmentService.remove(req.params.id)
     res.end()

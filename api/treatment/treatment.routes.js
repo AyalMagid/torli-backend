@@ -7,6 +7,8 @@ const router = express.Router()
 // router.use(requireAuth)
 
 router.get('/', getTreatments)
+// routim 
+// router.get('treatment/owner/:workPlace', getTreatments)
 router.get('/:id', getTreatment)
 router.put('/:id',updateTreatment)
 router.delete('/:id', deleteTreatment)

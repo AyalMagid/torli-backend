@@ -5,6 +5,7 @@ const ObjectId = require('mongodb').ObjectId
 module.exports = {
     addUser,
     getUser,
+    // getOwner,
     getUsers,
     removeUser,
     updateUser
@@ -57,10 +58,22 @@ async function getUser(phone) {
         const user = await collection.findOne({"phone":phone})
         return user
     } catch (err) {
-        console.log(`ERROR: cant find user by the phone - ${_id}`)
+        console.log(`ERROR: cant find user by the phone - ${phone}`)
         throw err;
     }
 }
+
+// routim
+// async function getOwner(workPlace) {
+//     const collection = await dbService.getCollection('user')
+//     try {
+//         const owner = await collection.findOne({"workPlace":workPlace})
+//         return owner
+//     } catch (err) {
+//         console.log(`ERROR: cant find owner by the workPlace - ${workPlace}`)
+//         throw err;
+//     }
+// }
 
  async function getUsers() {
     const collection = await dbService.getCollection('user')
@@ -72,3 +85,15 @@ async function getUser(phone) {
         throw err;
     }
 }
+
+// routim
+//  async function getUsers(workPlace) {
+//     const collection = await dbService.getCollection('user')
+//     try {
+//         const users = await collection.find({workPlace}).toArray();
+//         return users
+//     } catch (err) {
+//         console.log(`ERROR: cant get users collection`)
+//         throw err;
+//     }
+// }

@@ -11,6 +11,12 @@ async function getEventsFromCalendar(req, res) {
     res.send(events)
 }
 
+// routim
+// async function getEventsFromCalendar(req, res) {
+//     const events = await calendarService.getEventsFromCalendar(req.body) 
+//     res.send(events)
+// }
+
 async function getAvailbleDailySlots (req, res) {
     const dailySlots =  await calendarService.getAvailbleDailySlots(req.body) 
     console.log('dailyslotssss',dailySlots)
@@ -32,7 +38,15 @@ async function removeFromCalendar (req, res) {
     const isRemoved =  await calendarService.removeFromCalendar(req.body) 
     console.log('this ca',isRemoved);
     res.send(isRemoved)
-}
+} 
+
+// routim
+// async function removeFromCalendar (req, res) {
+//    //its may return err 
+//     const isRemoved =  await calendarService.removeFromCalendar(req.body) 
+//     console.log('this ca',isRemoved);
+//     res.send(isRemoved)
+// }
 
 module.exports = {
     getCalendar,

@@ -37,6 +37,21 @@ async function updateAd(contentInObj) {
     }
 }
 
+// routim
+// async function updateAd(advertise) {
+//     const collection = await dbService.getCollection('advertise')
+//     try {
+//         collection.updateOne(
+//             { "workPlace": advertise.workPlace },
+//             { $set: { "content": advertise.advertiseContent } }
+//         )
+//         return advertise;
+//     } catch (err) {
+//         console.log(`ERROR: cannot update ad content`)
+//         throw err;
+//     }
+// }
+
 async function toggleAdMode(modeInObj) {
     const collection = await dbService.getCollection('advertise')
     try {
@@ -51,6 +66,21 @@ async function toggleAdMode(modeInObj) {
     }
 }
 
+// routim
+// async function toggleAdMode(modeInObj) {
+//     const collection = await dbService.getCollection('advertise')
+//     try {
+//         collection.updateOne(
+//             { "workPlace": "modeInObj.workPlace" },
+//             { $set: { "isAdModeOn": modeInObj.isAdModeOn} }
+//         )
+//         return modeInObj;
+//     } catch (err) {
+//         console.log(`ERROR: cannot update ad content`)
+//         throw err;
+//     }
+// }
+
 async function getAd() {
     const collection = await dbService.getCollection('advertise')
     var advertise
@@ -63,3 +93,17 @@ async function getAd() {
         throw err;
     }
 }
+
+// routim
+// async function getAd(workPlace) {
+//     const collection = await dbService.getCollection('advertise')
+//     var advertise
+//     try {
+//         //assuming there is only one ad at the collection
+//         advertise = await collection.find({workPlace}).toArray();
+//         return advertise
+//     } catch (err) {
+//         console.log(`ERROR: cant find advertise`)
+//         throw err;
+//     }
+// }

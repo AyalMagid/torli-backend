@@ -6,10 +6,25 @@ async function getUser(req, res) {
     const user =  await userService.getUser(phone) 
     res.send(user)
 }
+
+// routim
+// async function getOwner(req, res) {
+//     const workPlace = req.params.workPlace
+//     const owner =  await userService.getOwner(workPlace) 
+//     res.send(owner)
+// }
+
 async function getUsers(req, res) {
     const users =  await userService.getUsers() 
     res.send(users)
 }
+
+// routim
+// async function getUsers(req, res) {
+//     const workPlace = req.params.workPlace
+//     const users =  await userService.getUsers(workPlace) 
+//     res.send(users)
+// }
 
 async function addUser(req, res) {
     const user =  await userService.addUser(req.body) 
