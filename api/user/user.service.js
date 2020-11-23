@@ -56,6 +56,7 @@ async function getUser(phone) {
     const collection = await dbService.getCollection('user')
     try {
         const user = await collection.findOne({"phone":phone})
+        console.log(user,'gergegeg')
         return user
     } catch (err) {
         console.log(`ERROR: cant find user by the phone - ${phone}`)

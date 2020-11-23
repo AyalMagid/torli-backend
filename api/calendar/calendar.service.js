@@ -8,15 +8,21 @@ module.exports = {
     removeFromCalendar,
     getEventsFromCalendar
 }
+
+// // deeNailSalonTori@gmail.com 
+const ACCOUNT_ID = '436912373'
+const CALENDAR_ID = 'calendar_ZGVlbmFpbHNhbG9udG9yaUBnbWFpbC5jb20'
+const TOKEN = "Bearer q2ubbY3c8T0UXYplJRWPJd3n9rkDL6"
+
 // // AYAL'S CALENDAR
-// const ACCOUNT_ID = '413361439'
+// const ACCOUNT_ID = '413361439'436912373
 // const CALENDAR_ID = 'calendar_YXlhbG1pc2huQGdtYWlsLmNvbQ'
 // const TOKEN = "Bearer mFzYTSGauAA4QGdG6rI9MtfvvfEZHo"
 
 // BAR SECOND
-const ACCOUNT_ID = '416830154'
-const CALENDAR_ID = "calendar_YmFydmFyZm1hbjNAZ21haWwuY29t"
-const TOKEN = "Bearer Zz1lcWHR2WjThDJhiLrJ4fgJ8ZzoxU"
+// const ACCOUNT_ID = '416830154'
+// const CALENDAR_ID = "calendar_YmFydmFyZm1hbjNAZ21haWwuY29t"
+// const TOKEN = "Bearer Zz1lcWHR2WjThDJhiLrJ4fgJ8ZzoxU"
 
 // BAR
 // const ACCOUNT_ID = '416457905'

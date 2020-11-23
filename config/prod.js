@@ -1,3 +1,5 @@
 module.exports = {
-  "dbURL": "mongodb+srv://barvar:dekelbar1515@cluster0.wvx7g.mongodb.net/BeautyApp_db?retryWrites=true&w=majority ",
+  "dbURL": "mongodb+srv://ayalMagid:Kahol965@cluster0.cwrbj.mongodb.net/ToriApp_db?retryWrites=true&w=majority"
 }
+
+
