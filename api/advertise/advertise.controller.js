@@ -2,13 +2,15 @@ const advertiseService = require('./advertise.service')
 const logger = require('../../services/logger.service')
 
 
-async function createAd(req, res) {
-    const advertise = await advertiseService.createAd()
-    res.send(advertise)
-}
+// async function createAd(req, res) {
+//     const advertise = await advertiseService.createAd()
+//     res.send(advertise)
+// }
 
-async function updateAd(req, res) {
-    const advertise = await advertiseService.updateAd(req.body)
+// routim
+async function createAd(req, res) {
+    const workPlace = req.params.workPlace
+    const advertise = await advertiseService.createAd(workPlace)
     res.send(advertise)
 }
 
@@ -28,17 +30,17 @@ async function toggleAdMode(req, res) {
     res.send(advertise)
 }
 
-async function getAd(req, res) {
-    const advertise = await advertiseService.getAd()
-    res.send(advertise)
-}
-
-// routim
 // async function getAd(req, res) {
-//     const workPlace = req.params.workPlace
-//     const advertise = await advertiseService.getAd(workPlace)
+//     const advertise = await advertiseService.getAd()
 //     res.send(advertise)
 // }
+
+// routim
+async function getAd(req, res) {
+    const workPlace = req.params.workPlace
+    const advertise = await advertiseService.getAd(workPlace)
+    res.send(advertise)
+}
 
 module.exports = {
     createAd,

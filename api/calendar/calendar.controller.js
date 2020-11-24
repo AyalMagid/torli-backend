@@ -33,20 +33,14 @@ async function addRecurrenceToCalendar (req, res) {
     res.send(calendar)
 }
 
+
 async function removeFromCalendar (req, res) {
    //its may return err 
+   console.log(req.body, 'req body')
     const isRemoved =  await calendarService.removeFromCalendar(req.body) 
     console.log('this ca',isRemoved);
     res.send(isRemoved)
-} 
-
-// routim
-// async function removeFromCalendar (req, res) {
-//    //its may return err 
-//     const isRemoved =  await calendarService.removeFromCalendar(req.body) 
-//     console.log('this ca',isRemoved);
-//     res.send(isRemoved)
-// }
+}
 
 module.exports = {
     getCalendar,

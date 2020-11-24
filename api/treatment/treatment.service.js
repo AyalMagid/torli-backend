@@ -11,31 +11,32 @@ module.exports = {
     add
 }
 
-async function query(filterBy = {}) {
+// async function query(filterBy = {}) {
   
-    const criteria = _buildCriteria(filterBy)
-    const collection = await dbService.getCollection('treatment')
-    try {
-        const treatments = await collection.find(criteria).toArray();
-      
-        return treatments
-    } catch (err) {
-        console.log('ERROR: cannot find treatments')
-        throw err;
-    }
-}
-// routim
-// async function query({workPlace}) {
-  
+//     const criteria = _buildCriteria(filterBy)
 //     const collection = await dbService.getCollection('treatment')
 //     try {
-//         const treatments = await collection.find( { workPlace: workPlace } ).toArray();
+//         const treatments = await collection.find(criteria).toArray();
+      
 //         return treatments
 //     } catch (err) {
 //         console.log('ERROR: cannot find treatments')
 //         throw err;
 //     }
 // }
+
+// routim
+async function query({workPlace}) {
+  
+    const collection = await dbService.getCollection('treatment')
+    try {
+        const treatments = await collection.find( { workPlace: workPlace } ).toArray();
+        return treatments
+    } catch (err) {
+        console.log('ERROR: cannot find treatments')
+        throw err;
+    }
+}
 
 async function getById(treatmentId) {
     const collection = await dbService.getCollection('treatments')

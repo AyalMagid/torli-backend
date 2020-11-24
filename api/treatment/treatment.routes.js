@@ -6,9 +6,9 @@ const router = express.Router()
 // middleware that is specific to this router
 // router.use(requireAuth)
 
-router.get('/', getTreatments)
+// router.get('/', getTreatments)
 // routim 
-// router.get('treatment/owner/:workPlace', getTreatments)
+router.get('/owner/:workPlace', getTreatments)
 router.get('/:id', getTreatment)
 router.put('/:id',updateTreatment)
 router.delete('/:id', deleteTreatment)

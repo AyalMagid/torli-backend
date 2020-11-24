@@ -4,12 +4,14 @@ const express = require('express')
 const { getAd,updateAd,toggleAdMode,createAd} = require('./advertise.controller')
 const router = express.Router()
 
-router.get('/', getAd);
+// router.get('/', getAd);
 // routim
-// router.get('/:workPlace', getAd);
+router.get('/:workPlace', getAd);
 router.put('/', updateAd);
 router.put('/mode', toggleAdMode);
-router.post('/', createAd);
+// routim
+router.post('/:workPlace', createAd);
+// router.post('/', createAd);
 
 
 module.exports = router

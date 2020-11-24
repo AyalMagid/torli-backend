@@ -5,7 +5,7 @@ const ObjectId = require('mongodb').ObjectId
 module.exports = {
     addUser,
     getUser,
-    // getOwner,
+    getOwner,
     getUsers,
     removeUser,
     updateUser
@@ -65,36 +65,38 @@ async function getUser(phone) {
 }
 
 // routim
-// async function getOwner(workPlace) {
-//     const collection = await dbService.getCollection('user')
-//     try {
-//         const owner = await collection.findOne({"workPlace":workPlace})
-//         return owner
-//     } catch (err) {
-//         console.log(`ERROR: cant find owner by the workPlace - ${workPlace}`)
-//         throw err;
-//     }
-// }
-
- async function getUsers() {
+async function getOwner(workPlace) {
     const collection = await dbService.getCollection('user')
     try {
-        const users = await collection.find({}).toArray();
-        return users
+        const owner = await collection.findOne({"workPlace":workPlace, isAdmin:true})
+        return owner
     } catch (err) {
-        console.log(`ERROR: cant get users collection`)
+        console.log(`ERROR: cant find owner by the workPlace - ${workPlace}`)
         throw err;
     }
 }
 
-// routim
-//  async function getUsers(workPlace) {
+//  async function getUsers() {
 //     const collection = await dbService.getCollection('user')
 //     try {
-//         const users = await collection.find({workPlace}).toArray();
+//         const users = await collection.find({}).toArray();
 //         return users
 //     } catch (err) {
 //         console.log(`ERROR: cant get users collection`)
 //         throw err;
 //     }
 // }
+
+// routim
+ async function getUsers(workPlace) {
+     console.log('222222')
+     console.log('workPlaceworkPlace', workPlace)
+    const collection = await dbService.getCollection('user')
+    try {
+        const users = await collection.find({workPlace}).toArray();
+        return users
+    } catch (err) {
+        console.log(`ERROR: cant get users collection`)
+        throw err;
+    }
+}

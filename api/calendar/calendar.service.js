@@ -72,41 +72,12 @@ async function getEventsFromCalendar(timeRange) {
 //     }
 // }
 
-async function addToCalendar(eventDetails) {
-    const { eventName, creatorName, creatorEmail, startTime, endTime } = eventDetails
-    try {
-        const event = await axios({
-            method: 'post',
-            url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/primary/events`,
-            headers: { Authorization: TOKEN, 'Content-Type': 'application/json' }
-            ,
-            data: JSON.stringify(
-                {
-                    "name": `${creatorName} - ${eventName}`,
-                    "description": eventName,
-                    "start": startTime,
-                    "end": endTime,
-                    // "creator": {
-                    //     "name": creatorName,
-                    //     "email": creatorEmail
-                    // }
-                })
-        })
-        return event.data;
-    } catch (err) {
-        console.log(`ERROR: cannot add event to calendar`)
-        throw err;
-    }
-}
-
-// routim
-
 // async function addToCalendar(eventDetails) {
-//     const { eventName, creatorName, creatorEmail, startTime, endTime, accountId } = eventDetails
+//     const { eventName, creatorName, creatorEmail, startTime, endTime } = eventDetails
 //     try {
 //         const event = await axios({
 //             method: 'post',
-//             url: `https://api.kloudless.com/v1/accounts/${accountId}/cal/calendars/primary/events`,
+//             url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/primary/events`,
 //             headers: { Authorization: TOKEN, 'Content-Type': 'application/json' }
 //             ,
 //             data: JSON.stringify(
@@ -128,16 +99,15 @@ async function addToCalendar(eventDetails) {
 //     }
 // }
 
-// add UNTIL option - UNTIL=19971224T000000Z  LINK https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html
-async function addRecurrenceToCalendar(eventDetails) {
-    console.log('eveveevent', eventDetails)
-    const { eventName, creatorName, startTime, endTime, recurrence} = eventDetails
+// routim
+
+async function addToCalendar(eventDetails) {
+    const { eventName, creatorName, creatorEmail, startTime, endTime, owner } = eventDetails
     try {
-        console.log('recurrencerecurrence', recurrence)
         const event = await axios({
             method: 'post',
-            url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/primary/events`,
-            headers: { Authorization: TOKEN, 'Content-Type': 'application/json' }
+            url: `https://api.kloudless.com/v1/accounts/${owner.accountId}/cal/calendars/primary/events`,
+            headers: { Authorization: owner.token, 'Content-Type': 'application/json' }
             ,
             data: JSON.stringify(
                 {
@@ -145,7 +115,10 @@ async function addRecurrenceToCalendar(eventDetails) {
                     "description": eventName,
                     "start": startTime,
                     "end": endTime,
-                    "recurrence": [{"rrule": `RRULE:FREQ=${recurrence.freq};COUNT=${recurrence.count}`}]
+                    // "creator": {
+                    //     "name": creatorName,
+                    //     "email": creatorEmail
+                    // }
                 })
         })
         return event.data;
@@ -155,16 +128,16 @@ async function addRecurrenceToCalendar(eventDetails) {
     }
 }
 
-// routim
+// add UNTIL option - UNTIL=19971224T000000Z  LINK https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html
 // async function addRecurrenceToCalendar(eventDetails) {
 //     console.log('eveveevent', eventDetails)
-//     const { eventName, creatorName, startTime, endTime, recurrence, token, accountId} = eventDetails
+//     const { eventName, creatorName, startTime, endTime, recurrence} = eventDetails
 //     try {
 //         console.log('recurrencerecurrence', recurrence)
 //         const event = await axios({
 //             method: 'post',
-//             url: `https://api.kloudless.com/v1/accounts/${accountId}/cal/calendars/primary/events`,
-//             headers: { Authorization: token, 'Content-Type': 'application/json' }
+//             url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/primary/events`,
+//             headers: { Authorization: TOKEN, 'Content-Type': 'application/json' }
 //             ,
 //             data: JSON.stringify(
 //                 {
@@ -182,29 +155,39 @@ async function addRecurrenceToCalendar(eventDetails) {
 //     }
 // }
 
-
-async function removeFromCalendar({ eventId }) {
+// routim
+async function addRecurrenceToCalendar(eventDetails) {
+    console.log('eveveevent', eventDetails)
+    const { eventName, creatorName, startTime, endTime, recurrence, token, accountId} = eventDetails
     try {
-        const res = await axios({
-            method: 'delete',
-            url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/${CALENDAR_ID}/events/${eventId}`,
-            headers: { Authorization: TOKEN }
+        console.log('recurrencerecurrence', recurrence)
+        const event = await axios({
+            method: 'post',
+            url: `https://api.kloudless.com/v1/accounts/${accountId}/cal/calendars/primary/events`,
+            headers: { Authorization: token, 'Content-Type': 'application/json' }
+            ,
+            data: JSON.stringify(
+                {
+                    "name": `${creatorName} - ${eventName}`,
+                    "description": eventName,
+                    "start": startTime,
+                    "end": endTime,
+                    "recurrence": [{"rrule": `RRULE:FREQ=${recurrence.freq};COUNT=${recurrence.count}`}]
+                })
         })
-
-        console.log('eventID',eventId,'removed', res)
-    return true
+        return event.data;
     } catch (err) {
-        console.log('not good',eventId,`ERROR: cannot remove event from calendar`)
+        console.log(`ERROR: cannot add event to calendar`)
         throw err;
     }
 }
 
-// routim
-// async function removeFromCalendar({ accountId, calendarId, eventId }) {
+
+// async function removeFromCalendar({ eventId }) {
 //     try {
 //         const res = await axios({
 //             method: 'delete',
-//             url: `https://api.kloudless.com/v1/accounts/${accountId}/cal/calendars/${calendarId}/events/${eventId}`,
+//             url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/${CALENDAR_ID}/events/${eventId}`,
 //             headers: { Authorization: TOKEN }
 //         })
 
@@ -216,42 +199,31 @@ async function removeFromCalendar({ eventId }) {
 //     }
 // }
 
-
-// if no time slots availble returns only the date 
-async function getAvailbleDailySlots(treatmentDetails) {
-    const { startTime, endtTime, duration } = treatmentDetails
+// routim
+async function removeFromCalendar({ accountId, calendarId, eventId, token }) {
     try {
         const res = await axios({
-            method: 'post',
-            url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/availability`,
-            headers: { Authorization: TOKEN, 'Content-Type': 'application/json' },
-            data: JSON.stringify({
-                "meeting_duration": `PT${duration}`,
-                "time_windows": [
-                    {
-                        "start": startTime,
-                        "end": endtTime,
-                    }
-                ]
-            })
+            method: 'delete',
+            url: `https://api.kloudless.com/v1/accounts/${accountId}/cal/calendars/${calendarId}/events/${eventId}`,
+            headers: { Authorization: token }
         })
-        if (res.data.time_windows.length) return res.data.time_windows
-        // return just a string with the date which is needed for later
-        else return startTime
+
+        console.log('eventID',eventId,'removed', res)
+    return true
     } catch (err) {
-        console.log(`ERROR: cannot get daily slots from calendar`)
+        console.log('not good',eventId,`ERROR: cannot remove event from calendar`)
         throw err;
     }
 }
 
-// routim
+
 // if no time slots availble returns only the date 
 // async function getAvailbleDailySlots(treatmentDetails) {
-//     const { startTime, endtTime, duration, accountId } = treatmentDetails
+//     const { startTime, endtTime, duration } = treatmentDetails
 //     try {
 //         const res = await axios({
 //             method: 'post',
-//             url: `https://api.kloudless.com/v1/accounts/${accountId}/cal/availability`,
+//             url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/availability`,
 //             headers: { Authorization: TOKEN, 'Content-Type': 'application/json' },
 //             data: JSON.stringify({
 //                 "meeting_duration": `PT${duration}`,
@@ -271,4 +243,32 @@ async function getAvailbleDailySlots(treatmentDetails) {
 //         throw err;
 //     }
 // }
+
+// routim
+// if no time slots availble returns only the date 
+async function getAvailbleDailySlots(treatmentDetails) {
+    const { startTime, endtTime, duration, owner } = treatmentDetails
+    try {
+        const res = await axios({
+            method: 'post',
+            url: `https://api.kloudless.com/v1/accounts/${owner.accountId}/cal/availability`,
+            headers: { Authorization: owner.token, 'Content-Type': 'application/json' },
+            data: JSON.stringify({
+                "meeting_duration": `PT${duration}`,
+                "time_windows": [
+                    {
+                        "start": startTime,
+                        "end": endtTime,
+                    }
+                ]
+            })
+        })
+        if (res.data.time_windows.length) return res.data.time_windows
+        // return just a string with the date which is needed for later
+        else return startTime
+    } catch (err) {
+        console.log(`ERROR: cannot get daily slots from calendar`)
+        throw err;
+    }
+}
 

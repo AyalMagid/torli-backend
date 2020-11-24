@@ -6,19 +6,19 @@ async function getTreatment(req, res) {
     res.send(treatment)
 }
   
-async function getTreatments(req, res) {
-    const treatments = await treatmentService.query(req.query)
-    logger.debug(treatments);
-    res.send(treatments)
-}
-
-// routim
 // async function getTreatments(req, res) {
-//     const workPlace = req.params.workPlace
-//     const treatments = await treatmentService.query({workPlace})
+//     const treatments = await treatmentService.query(req.query)
 //     logger.debug(treatments);
 //     res.send(treatments)
 // }
+
+// routim
+async function getTreatments(req, res) {
+    const workPlace = req.params.workPlace
+    const treatments = await treatmentService.query({workPlace})
+    logger.debug(treatments);
+    res.send(treatments)
+}
 
 async function deleteTreatment(req, res) {
     await treatmentService.remove(req.params.id)
