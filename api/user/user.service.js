@@ -11,8 +11,17 @@ module.exports = {
     updateUser
 }
 
+// login
+// const auth = await bcrypt.compare(password, user.password);
 
 async function addUser (user){
+
+    // add user.password when siggningup as admin
+    // if (user.pass) {
+    //     const salt = await bcrypt.genSalt()
+    //     const hashPassword = await bcrypt.hash(password, salt);
+    //     user.pass = hashPassword
+    // }
     const collection = await dbService.getCollection('user')
     try {
         await collection.insertOne(user);
@@ -56,7 +65,6 @@ async function getUser(phone) {
     const collection = await dbService.getCollection('user')
     try {
         const user = await collection.findOne({"phone":phone})
-        console.log(user,'gergegeg')
         return user
     } catch (err) {
         console.log(`ERROR: cant find user by the phone - ${phone}`)
