@@ -43,12 +43,12 @@ async function getCalendar() {
     }
 }
 
-async function getEventsFromCalendar(timeRange) {
+async function getEventsFromCalendar({timeRange,owner}) {
     try {
         const res = await axios({
             method: 'get',
-            url: `https://api.kloudless.com/v1/accounts/${ACCOUNT_ID}/cal/calendars/${CALENDAR_ID}/events?start=${timeRange.start}&end=${timeRange.end}`,
-            headers: { Authorization: TOKEN }
+            url: `https://api.kloudless.com/v1/accounts/${owner.accountId}/cal/calendars/${owner.calendarId}/events?start=${timeRange.start}&end=${timeRange.end}`,
+            headers: { Authorization: owner.token }
         })
         return res.data.objects
     } catch (err) {

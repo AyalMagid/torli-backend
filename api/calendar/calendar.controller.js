@@ -7,7 +7,9 @@ async function getCalendar(req, res) {
 }
 
 async function getEventsFromCalendar(req, res) {
-    const events =  await calendarService.getEventsFromCalendar(req.params)
+    console.log('req.body', req.body)
+    const events =  await calendarService.getEventsFromCalendar(req.body)
+    // const events =  await calendarService.getEventsFromCalendar(req.params)
     res.send(events)
 }
 

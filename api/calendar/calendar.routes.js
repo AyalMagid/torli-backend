@@ -5,10 +5,11 @@ const { getCalendar, addToCalendar, addRecurrenceToCalendar, removeFromCalendar,
 const router = express.Router()
 
 router.get('/', getCalendar);
-router.get('/:start/:end', getEventsFromCalendar);
+// router.get('/:start/:end', getEventsFromCalendar);
 // routim
 // router.get('/events', getEventsFromCalendar);
 router.post('/slots', getAvailbleDailySlots);
+router.post('/events', getEventsFromCalendar);
 router.post('/', addToCalendar);
 router.post('/recurrence', addRecurrenceToCalendar);
 router.delete('/', removeFromCalendar)
